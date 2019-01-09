@@ -1,0 +1,150 @@
+//Ricky Bojorquez 01/08/19
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+public class w1d2{
+    public static void main(String [] args){
+        //Problem 1
+        List<String> strings = new ArrayList<String>();
+
+        strings.add("kung");
+        strings.add("foo");
+        strings.add("kung");
+        strings.add("hi");
+        strings.add("kung");
+
+        findDuplicates(strings);
+        //end problem 1
+        //start problem 2
+        String str = "pallap";
+        System.out.println(pal(str));
+        String str2 = "notapal";
+        System.out.println(pal(str2));
+        //end problem 2
+        //start problem 3
+        int count = 20;
+        fizzbuzz(count);
+        //end problem 3
+        //start problem 4
+        String one = "taco";
+        String two = "coat";
+        System.out.println(checkAnagram(one, two));
+        //end problem 4
+        //start problem 5
+        printTables();
+        //end problem 5
+    }
+
+    //problem 1
+    public static void findDuplicates(List <String> strings){
+        List<String> singles = new ArrayList<String>();
+        List<String> dups = new ArrayList<String>();
+
+        for(String temp : strings){
+            if(singles.contains(temp) && !(dups.contains(temp))){
+                dups.add(temp);
+            }
+            else if(!(singles.contains(temp))){
+                singles.add(temp);
+            }
+            //System.out.println(temp + " ");
+
+        }
+        for(String temp : dups){
+            System.out.println(temp + " ");
+        }
+    }
+    //end problem 1
+    //start for method problem 2
+    public static boolean pal(String str){
+        boolean pally = false;
+        for(int i=0;i<str.length()-i;i++){
+            if(str.charAt(i)==str.charAt((str.length()-1)-i)){
+                pally = true;
+            }
+            else{
+                pally = false;
+                return pally;
+            }
+        }
+        return pally;
+    }
+    //end for method problem 2
+    //start for method problem 3
+    public static void fizzbuzz(int count){
+        for(int i=1;i<21;i++){
+            if(i%3 == 0 && i%5 == 0){
+                System.out.println(i + ": fizzbuzz");
+            }
+            else if(i%3 == 0){
+                System.out.println(i + ": fizz");
+            }
+            else if(i%5 == 0){
+                System.out.println(i + ": buzz");
+            }
+            else{
+                System.out.println(i);
+            }
+        }
+    }
+    //end for method problem 3
+    //start method for problem 4
+    public static boolean checkAnagram(String one, String two){
+        char [] onechars = new char[one.length()];
+        char [] twochars = new char[two.length()];
+        if(one.length() == two.length()){
+            for(int i=0; i < one.length();i++){
+                onechars[i] = one.charAt(i);
+                twochars[i] = two.charAt(i);
+            }
+
+            for(int i=0; i<onechars.length;i++){
+                for(int j=i+1; j<onechars.length;j++){
+                    if(onechars[j]<onechars[i]){
+                        char temp=onechars[i];
+                        onechars[i]=onechars[j];
+                        onechars[j]=temp;
+                    }
+                    if(twochars[j]<twochars[i]){
+                        char temp=twochars[i];
+                        twochars[i]=twochars[j];
+                        twochars[j]=temp;
+                    }
+                }
+            }
+
+            /*
+            Arrays.sort(onechars);
+            Arrays.sort(twochars);
+            */
+            String newone = new String(onechars);
+            String newtwo = new String(twochars);
+            if(newone.equals(newtwo)){
+                return true;
+            }
+            else
+                    return false;
+            //System.out.println(newone + newtwo);
+        }
+        else
+            return false;
+    }
+    //end method 4
+    //start method problem 5
+    public static void printTables(){
+        int [][] multitable = new int[10][10];
+        for(int i=0; i<10;i++){
+            for(int j=0; j<10;j++){
+                multitable[i][j] = (i+1)*(j+1);
+            }
+        }
+        for(int i=0; i<10;i++){
+            for(int j=0; j<10;j++){
+                System.out.print(multitable[i][j] +" ");
+            }
+            System.out.print("\n");
+        }
+    }
+    //end method problem 5
+}
